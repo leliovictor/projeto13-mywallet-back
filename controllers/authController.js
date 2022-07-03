@@ -1,13 +1,6 @@
 import db from "../config/db.js";
 import bcrypt from "bcrypt";
-
-//SIGNUP
-//CRIAR USUARIO - OK
-//CRIAR USUARIO NO STATEMENTS - OK
-//VALIDAR USUARIO - (checar se já tem login ou email cadastrado)
-
-//LOGIN
-//Objeto no formato:
+import { v4 as uuid } from "uuid";
 
 export async function postSignUp(req, res) {
   const newUser = req.body;
@@ -17,12 +10,10 @@ export async function postSignUp(req, res) {
       .collection("users")
       .insertOne({ ...newUser, password: cryptPassword });
 
-    await db
-      .collection("statements")
-      .insertOne({
-        user_id: response.insertedId,
-        walletStatement: []
-      });
+    await db.collection("statements").insertOne({
+      user_id: response.insertedId,
+      walletStatement: [],
+    });
 
     res.sendStatus(201);
   } catch {
@@ -30,5 +21,19 @@ export async function postSignUp(req, res) {
   }
 }
 
-//No Login gerará um TOKEN para enviar ao front para guardar no context
-//VER COMO CHECAR O TOKEN OU SE ATUALIZA O TOKEN NO STATEMENT E COMPARA AO LONGO DAS OPERAÇÕES
+export async function postLogin(req, res) {
+  const token = uuid();
+
+  const { name, _id } = res.locals.user;
+
+  await db
+    .collection("sessions")
+    .insertOne({ userID: _id, token: token, lastStatus: Date.now() });
+
+  const response = {
+    name,
+    token: token,
+  };
+
+  res.status(201).send(response);
+}

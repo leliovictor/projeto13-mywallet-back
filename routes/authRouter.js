@@ -1,22 +1,13 @@
 import { Router } from "express";
 
-import { postSignUp } from "../controllers/authController.js";
-
-/*import {
-    validateParticipant,
-    checkParticipantOn,
-  } from "../middlewares/participantMiddleware.js";
-  import {
-    postParticipants,
-    getParticipants,
-  } from "../controllers/participantsController.js";
- -> EXAMPLE */
+import { postSignUp, postLogin } from "../controllers/authController.js";
+import { findUser, checkPassword, checkUserAlreadyExist } from "../middlewares/authMiddlewares.js";
 
 const authRouter = Router();
 
-authRouter.post("/signup", postSignUp);
+authRouter.post("/signup", checkUserAlreadyExist, postSignUp);
+authRouter.post("/", findUser, checkPassword, postLogin);
 
 export default authRouter;
 
-//import
-//signInRouter.post/get("/ROTA",middlewares,post/getcontrollers);
+
