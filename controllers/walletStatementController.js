@@ -9,8 +9,13 @@ import db from "../config/db.js";
   _id: referência a pessoa que é dona disso,
   statement: [{date:DD/MM/YYYY,description:, value:, type:(deposit or withdraw)},],
   token?
-}
+}*/
 
+export async function getStatement(req, res) {
+
+};
+
+/*
 pergunta: terá dois _id? Que o mongo cria quando cria um novo objeto e o id do usuario? Checar isso;
 */
 export async function postStatement(req, res) {
