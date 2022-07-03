@@ -1,5 +1,18 @@
 import db from "../config/db.js";
 
+//Entrará a função aqui de: 
+//GET - Pegar o extrato
+//POST - Adicionar entrada ou saída
+//Quero um objeto no formato:
+/*
+{
+  _id: referência a pessoa que é dona disso,
+  statement: [{date:DD/MM/YYYY,description:, value:, type:(deposit or withdraw)},],
+  token?
+}
+
+pergunta: terá dois _id? Que o mongo cria quando cria um novo objeto e o id do usuario? Checar isso;
+*/
 export async function postStatement(req, res) {
     /*Example
     try {

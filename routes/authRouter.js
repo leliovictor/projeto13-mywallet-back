@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import { postSignUp } from "../controllers/authController.js";
+
 /*import {
     validateParticipant,
     checkParticipantOn,
@@ -10,9 +12,11 @@ import { Router } from "express";
   } from "../controllers/participantsController.js";
  -> EXAMPLE */
 
-const signInRouter = Router();
+const authRouter = Router();
 
-//Rotas entrará aqui no formato:
+authRouter.post("/signup", postSignUp);
 
-//import 
+export default authRouter;
+
+//import
 //signInRouter.post/get("/ROTA",middlewares,post/getcontrollers);
