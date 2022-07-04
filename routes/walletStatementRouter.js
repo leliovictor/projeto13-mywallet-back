@@ -1,20 +1,12 @@
 import { Router } from "express";
 
-/*import {
-    validateParticipant,
-    checkParticipantOn,
-  } from "../middlewares/participantMiddleware.js";
-  import {
-    postParticipants,
-    getParticipants,
-  } from "../controllers/participantsController.js";
- -> EXAMPLE */
+import { getStatement } from "../controllers/walletStatementController.js";
+import { checkToken} from "../middlewares/walletStatementMiddlewares.js";
 
- const signInRouter = Router();
+const walletStatementRouter = Router();
 
- export default signInRouter;
+walletStatementRouter.get("/home", checkToken, getStatement);
 
- //Rotas entrará aqui no formato:
- 
- //import 
- //signInRouter.post/get("/ROTA",middlewares,post/getcontrollers);
+//authRouter.post("/", findUser, checkPassword, postLogin);
+
+export default walletStatementRouter;
