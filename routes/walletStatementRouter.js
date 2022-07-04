@@ -3,7 +3,8 @@ import { Router } from "express";
 import {
   getStatement,
   postStatement,
-  deleteStatement
+  deleteStatement,
+  editStatement
 } from "../controllers/walletStatementController.js";
 import {
   checkToken,
@@ -16,5 +17,6 @@ const walletStatementRouter = Router();
 walletStatementRouter.get("/home", checkToken, getStatement);
 walletStatementRouter.post("/home", checkToken, findStatement, validateInputValue, postStatement);
 walletStatementRouter.delete("/home/:index", checkToken, findStatement, deleteStatement);
+walletStatementRouter.put("/home", checkToken, findStatement, validateInputValue, editStatement);
 
 export default walletStatementRouter;

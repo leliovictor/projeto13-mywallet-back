@@ -2,19 +2,6 @@ import db from "../config/db.js";
 import { ObjectId } from "mongodb";
 import dayjs from "dayjs";
 
-//Entrará a função aqui de:
-//GET - Pegar o extrato
-//POST - Adicionar entrada ou saída
-//Quero um objeto no formato:
-
-/*
-{
-  _id: referência a pessoa que é dona disso,
-  statement: [{date:DD/MM/YYYY,description:, value:, type:(deposit or withdraw)},],
-  token?
-}
-*/
-
 export async function getStatement(_req, res) {
   const userID = res.locals._id;
 
@@ -58,17 +45,35 @@ export async function postStatement(req, res) {
 export async function deleteStatement(req, res) {
   const { walletStatement, user_id } = res.locals.walletStatement;
 
-  const {index} = req.params;
+  const { index } = req.params;
 
   walletStatement.splice(index, 1);
 
   try {
     await db
       .collection("statements")
-      .updateOne(
-        { user_id: user_id },
-        { $set: { walletStatement } }
-      );
+      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
+
+    res.sendStatus(202);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+}
+
+export async function editStatement(req, res) {
+  const { index, value, description } = req.body;
+  const { walletStatement, user_id } = res.locals.walletStatement;
+
+  walletStatement[index] = {
+    ...walletStatement[index],
+    value: Math.abs(value).toFixed(2),
+    description,
+  };
+
+  try {
+    await db
+      .collection("statements")
+      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
 
     res.sendStatus(202);
   } catch (err) {
