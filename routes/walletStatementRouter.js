@@ -1,12 +1,17 @@
 import { Router } from "express";
 
-import { getStatement } from "../controllers/walletStatementController.js";
-import { checkToken} from "../middlewares/walletStatementMiddlewares.js";
+import {
+  getStatement,
+  postStatement,
+} from "../controllers/walletStatementController.js";
+import {
+  checkToken,
+  findStatement,
+} from "../middlewares/walletStatementMiddlewares.js";
 
 const walletStatementRouter = Router();
 
 walletStatementRouter.get("/home", checkToken, getStatement);
-
-//authRouter.post("/", findUser, checkPassword, postLogin);
+walletStatementRouter.post("/home", checkToken, findStatement, postStatement);
 
 export default walletStatementRouter;

@@ -1,5 +1,6 @@
 import db from "../config/db.js";
 import { ObjectId } from "mongodb";
+import dayjs from "dayjs";
 
 //Entrará a função aqui de:
 //GET - Pegar o extrato
@@ -24,23 +25,32 @@ export async function getStatement(req, res) {
   res.status(200).send(walletStatement);
 }
 
-/*
-pergunta: terá dois _id? Que o mongo cria quando cria um novo objeto e o id do usuario? Checar isso;
-*/
 export async function postStatement(req, res) {
-  /*Example
-    try {
-      const findUser = await db.collection("users").findOne({ name: user });
-      if (!findUser) return res.sendStatus(404);
-  
-      await db
-        .collection("users")
-        .updateOne({ name: user }, { $set: { lastStatus: Date.now() } });
-  
-      res.sendStatus(200);
-    } catch {
-      res.sendStatus(500);
-    } */
-}
+  const { walletStatement, user_id } = res.locals.walletStatement;
 
-//Quem fará o post/get e etc, serão as routes, aqui virá só a função (SEM A VALIDAÇÃO);
+  const { description, value } = req.body;
+
+  const operation = value > 0 ? "debit" : "credit";
+
+  const newOperation = {
+    date: dayjs().format("DD/MM"),
+    description,
+    value: Math.abs(value).toFixed(2),
+    type: operation,
+  };
+
+  const updateStatement = [...walletStatement, newOperation];
+
+  try {
+    await db
+      .collection("statements")
+      .updateOne(
+        { user_id: user_id },
+        { $set: { walletStatement: updateStatement } }
+      );
+
+    res.sendStatus(202);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+}
