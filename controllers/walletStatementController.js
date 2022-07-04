@@ -15,7 +15,7 @@ import dayjs from "dayjs";
 }
 */
 
-export async function getStatement(req, res) {
+export async function getStatement(_req, res) {
   const userID = res.locals._id;
 
   const { walletStatement } = await db
@@ -47,6 +47,27 @@ export async function postStatement(req, res) {
       .updateOne(
         { user_id: user_id },
         { $set: { walletStatement: updateStatement } }
+      );
+
+    res.sendStatus(202);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+}
+
+export async function deleteStatement(req, res) {
+  const { walletStatement, user_id } = res.locals.walletStatement;
+
+  const {index} = req.params;
+
+  walletStatement.splice(index, 1);
+
+  try {
+    await db
+      .collection("statements")
+      .updateOne(
+        { user_id: user_id },
+        { $set: { walletStatement } }
       );
 
     res.sendStatus(202);
