@@ -39,7 +39,7 @@ export async function postStatement(req, res) {
     type: operation,
   };
 
-  const updateStatement = [...walletStatement, newOperation];
+  const updateStatement = [newOperation, ...walletStatement];
 
   try {
     await db

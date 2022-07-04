@@ -1,5 +1,6 @@
 import db from "../config/db.js";
 import { ObjectId } from "mongodb";
+import { validateInputSchema } from "../schemas/walletStatementSchema.js";
 
 export async function checkToken(req, res, next) {
   const { authorization } = req.headers;
@@ -23,11 +24,24 @@ export async function findStatement(req, res, next) {
     .collection("statements")
     .findOne({ user_id: ObjectId(res.locals._id) });
 
-    if (!userStatement) {
-      return res.status(401).send("Wallet Statement doesn't exist");
-    }
+  if (!userStatement) {
+    return res.status(401).send("Wallet Statement doesn't exist");
+  }
 
-    res.locals.walletStatement = userStatement;
-    
+  res.locals.walletStatement = userStatement;
+
+  next();
+}
+
+export async function validateInputValue(req, res, next) {
+  const inputValidation = validateInputSchema.validate(req.body);
+
+  if (inputValidation.error) {
+    return res.status(422).send({
+      message: "Invalid format login",
+      detail: inputValidation.error.details[0].message,
+    });
+  }
+
   next();
 }
