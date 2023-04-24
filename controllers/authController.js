@@ -1,6 +1,7 @@
 import db from "../config/db.js";
 import bcrypt from "bcrypt";
-import { v4 as uuid } from "uuid";
+
+import * as service from "../services/authService.js";
 
 export async function postSignUp(req, res) {
   const newUser = req.body;
@@ -21,14 +22,11 @@ export async function postSignUp(req, res) {
   }
 }
 
-export async function postLogin(req, res) {
-  const token = uuid();
+export async function postLogin(_req, res) {
 
   const { name, _id } = res.locals.user;
 
-  await db
-    .collection("sessions")
-    .insertOne({ userID: _id, token: token, lastStatus: Date.now() });
+  const token = service.postLogin(_id);
 
   const response = {
     name,
