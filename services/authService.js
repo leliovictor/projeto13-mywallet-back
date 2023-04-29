@@ -5,7 +5,7 @@ import * as repository from "../repositories/authRepository.js";
 export async function postLogin(_id) {
     const token = uuid();
 
-    await repository.createUser(token, _id);
+    await repository.loginUser(token, _id);
 
     return token;
 }
