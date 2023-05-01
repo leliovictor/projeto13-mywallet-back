@@ -14,12 +14,5 @@ export async function postLogin(_id) {
 export async function postSignUp(newUser) {
   const cryptPassword = bcrypt.hashSync(newUser.password, 10);
 
-  const response = await db
-    .collection("users")
-    .insertOne({ ...newUser, password: cryptPassword });
-
-  await db.collection("statements").insertOne({
-    user_id: response.insertedId,
-    walletStatement: [],
-  });
+  await repository.createUser(newUser, cryptPassword);
 }

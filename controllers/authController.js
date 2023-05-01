@@ -1,5 +1,3 @@
-import db from "../config/db.js";
-
 import * as service from "../services/authService.js";
 
 export async function postSignUp(req, res) {
