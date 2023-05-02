@@ -2,12 +2,12 @@ import db from "../config/db.js";
 import { ObjectId } from "mongodb";
 import dayjs from "dayjs";
 
+import * as service from "../services/walletStatementService.js";
+
 export async function getStatement(_req, res) {
   const userID = res.locals._id;
 
-  const { walletStatement } = await db
-    .collection("statements")
-    .findOne({ user_id: ObjectId(userID) });
+  const walletStatement = await service.getStatement(userID);
 
   res.status(200).send(walletStatement);
 }
