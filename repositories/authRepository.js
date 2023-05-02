@@ -11,8 +11,12 @@ export async function createUser(newUser, cryptPassword) {
     .collection("users")
     .insertOne({ ...newUser, password: cryptPassword });
 
+  await createWallet(response);
+}
+
+export async function createWallet(user) {
   await db.collection("statements").insertOne({
-    user_id: response.insertedId,
+    user_id: user.insertedId,
     walletStatement: [],
   });
 }
