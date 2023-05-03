@@ -1,9 +1,7 @@
-import db from "../config/db.js";
+import * as repository from "../repositories/walletStatementRepository.js";
 
-export async function getStatement() {
-    const { walletStatement } = await db
-    .collection("statements")
-    .findOne({ user_id: ObjectId(userID) });
+export async function getStatement(userId) {
+    const { walletStatement } = await repository.getUserWallet(userId);
 
     return walletStatement;
 }
