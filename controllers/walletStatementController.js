@@ -17,20 +17,9 @@ export async function postStatement(req, res) {
 
   const { description, value } = req.body;
 
-  const operation = value > 0 ? "debit" : "credit";
+  await service.postStatement(user_id, walletStatement, description, value);
 
-  const newOperation = {
-    date: dayjs().format("DD/MM"),
-    description,
-    value: Math.abs(value).toFixed(2),
-    type: operation,
-  };
-
-  const updateStatement = [newOperation, ...walletStatement]; //passar isso tudo para o service
-
-  await service.postStatement(user_id, updateStatement);
-
-    return res.sendStatus(202);
+  return res.sendStatus(202);
 }
 
 export async function deleteStatement(req, res) {

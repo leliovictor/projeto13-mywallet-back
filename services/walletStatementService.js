@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import * as repository from "../repositories/walletStatementRepository.js";
 
 export async function getStatement(userId) {
@@ -6,8 +8,18 @@ export async function getStatement(userId) {
     return walletStatement;
 }
 
-export async function postStatement(userId, newStatement) {
+export async function postStatement(userId, walletStatement, description, value) {
+    
+    const operation = value > 0 ? "debit" : "credit";
 
-    await repository.postUserWallet(userId, newStatement); //Passar as regras de negócio para cá!
+    const newOperation = {
+        date: dayjs().format("DD/MM"),
+        description,
+        value: Math.abs(value).toFixed(2),
+        type: operation,
+      };
+    
+    const updateStatement = [newOperation, ...walletStatement];
 
+    await repository.postUserWallet(userId, updateStatement);
 }
