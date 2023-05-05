@@ -26,20 +26,11 @@ export async function postStatement(req, res) {
     type: operation,
   };
 
-  const updateStatement = [newOperation, ...walletStatement];
+  const updateStatement = [newOperation, ...walletStatement]; //passar isso tudo para o service
 
-  try {
-    await db
-      .collection("statements")
-      .updateOne(
-        { user_id: user_id },
-        { $set: { walletStatement: updateStatement } }
-      );
+  await service.postStatement(user_id, updateStatement);
 
-    res.sendStatus(202);
-  } catch (err) {
-    res.sendStatus(500);
-  }
+    return res.sendStatus(202);
 }
 
 export async function deleteStatement(req, res) {

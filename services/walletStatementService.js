@@ -5,3 +5,9 @@ export async function getStatement(userId) {
 
     return walletStatement;
 }
+
+export async function postStatement(userId, newStatement) {
+
+    await repository.postUserWallet(userId, newStatement); //Passar as regras de negócio para cá!
+
+}
