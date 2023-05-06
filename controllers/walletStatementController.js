@@ -1,6 +1,5 @@
 import db from "../config/db.js";
 import { ObjectId } from "mongodb";
-import dayjs from "dayjs";
 
 import * as service from "../services/walletStatementService.js";
 
@@ -27,17 +26,9 @@ export async function deleteStatement(req, res) {
 
   const { index } = req.params;
 
-  walletStatement.splice(index, 1);
-
-  try {
-    await db
-      .collection("statements")
-      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
-
-    res.sendStatus(202);
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  await service.deleteStatement(user_id, index, walletStatement);
+  
+    return res.sendStatus(202);
 }
 
 export async function editStatement(req, res) {
