@@ -25,9 +25,8 @@ export async function postStatement(userId, walletStatement, description, value)
 }
 
 export async function deleteStatement(user_id, index, walletStatement) {
+
     walletStatement.splice(index, 1);
 
-    await db
-      .collection("statements")
-      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
+    await repository.deleteStatement(user_id, walletStatement);
 }

@@ -14,3 +14,9 @@ export async function postUserWallet(userId, newStatement) {
       { $set: { walletStatement: newStatement } }
     );
 }
+
+export async function deleteStatement(user_id, walletStatement) {
+  await db
+  .collection("statements")
+  .updateOne({ user_id: user_id }, { $set: { walletStatement } }); 
+}
