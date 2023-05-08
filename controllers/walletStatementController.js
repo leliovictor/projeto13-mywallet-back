@@ -28,26 +28,14 @@ export async function deleteStatement(req, res) {
 
   await service.deleteStatement(user_id, index, walletStatement);
   
-    return res.sendStatus(202);
+  return res.sendStatus(202);
 }
 
 export async function editStatement(req, res) {
   const { index, value, description } = req.body;
   const { walletStatement, user_id } = res.locals.walletStatement;
 
-  walletStatement[index] = {
-    ...walletStatement[index],
-    value: Math.abs(value).toFixed(2),
-    description,
-  };
+  await service.editStatement(user_id, walletStatement, index, value, description);
 
-  try {
-    await db
-      .collection("statements")
-      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
-
-    res.sendStatus(202);
-  } catch (err) {
-    res.sendStatus(500);
-  }
+  return res.sendStatus(202);
 }
