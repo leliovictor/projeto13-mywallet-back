@@ -36,7 +36,5 @@ export async function editStatement(user_id, walletStatement, index, value, desc
         description,
     };
 
-    await db
-      .collection("statements")
-      .updateOne({ user_id: user_id }, { $set: { walletStatement } });
+    await repository.editStatement(user_id, walletStatement);
 }
