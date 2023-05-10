@@ -1,6 +1,3 @@
-import db from "../config/db.js";
-import { ObjectId } from "mongodb";
-
 import * as service from "../services/walletStatementService.js";
 
 export async function getStatement(_req, res) {
