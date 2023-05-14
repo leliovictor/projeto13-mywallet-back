@@ -8,3 +8,6 @@ Coisas para atualizar/fazer:
 - Converter o js para typescript
 - Atualizar o ReadMe explicando o projeto
 - Mudar o back para o Railway 
+
+- Modificar o middleware, db call precisa ser do service [regra de negocio não entra em middleware].
+Adicionar a função que faz o throw error para fazer isso.
