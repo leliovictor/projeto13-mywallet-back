@@ -16,3 +16,16 @@ export async function postSignUp(newUser) {
 
   await repository.createUser(newUser, cryptPassword);
 }
+
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+// FUNÇÔES AUXILIARES QUE AINDA NÂO ESTÃO EM USO!!!!
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+
+export async function checkUserAlreadyExist(email) {
+  const user = await db.collection("users").findOne({email}); //Criar funções menores no repository para isso.
+
+  //Criar um throw para os erros.
+  if(user) return res.status(403).send("Email already in use");
+}
