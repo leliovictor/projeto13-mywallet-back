@@ -38,3 +38,12 @@ export async function editStatement(user_id, walletStatement, index, value, desc
 
     await repository.editStatement(user_id, walletStatement);
 }
+
+
+
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+// FUNÇÔES AUXILIARES QUE AINDA NÂO ESTÃO EM USO!!!!
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+
