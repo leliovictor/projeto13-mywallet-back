@@ -7,7 +7,8 @@ Coisas para atualizar/fazer:
 - Banco de dados baseado em Mongo, rever como fazer as conexões no localhost para testar a refatoração
 - Converter o js para typescript
 - Atualizar o ReadMe explicando o projeto
-- Mudar o back para o Railway 
+- Mudar o back para o Railway - Aprender como se faz. 
+- Adicionar regras de validação, schema está muito 'pobre'
 
 - Modificar o middleware, db call precisa ser do service [regra de negocio não entra em middleware].
 Adicionar a função que faz o throw error para fazer isso.
