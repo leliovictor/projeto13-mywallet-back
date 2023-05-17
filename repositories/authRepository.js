@@ -21,6 +21,6 @@ export async function createWallet(user) {
   });
 }
 
-export async function findUser(email) {
+export async function findUserByEmail(email) {
   return await db.collection("users").findOne({email});
 }

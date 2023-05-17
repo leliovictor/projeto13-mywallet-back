@@ -24,8 +24,18 @@ export async function postSignUp(newUser) {
 //----------------------------------------------------------------
 
 export async function checkUserAlreadyExist(email) {
-  const user = await repository.findUser(email);
+  const user = await repository.findUserByEmail(email);
 
   //Criar um throw para os erros.
   if(user) return res.status(403).send("Email already in use");
+}
+
+export async function validatePassword(password, hashPassword) {
+  const confirmPassword = bcrypt.compareSync(
+    password,
+    hashPassword
+  );
+
+  if (!confirmPassword)
+    return res.status(401).send("E-mail or Password incorrect!");
 }
