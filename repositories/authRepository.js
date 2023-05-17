@@ -20,3 +20,7 @@ export async function createWallet(user) {
     walletStatement: [],
   });
 }
+
+export async function findUser(email) {
+  return await db.collection("users").findOne({email});
+}

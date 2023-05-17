@@ -24,7 +24,7 @@ export async function postSignUp(newUser) {
 //----------------------------------------------------------------
 
 export async function checkUserAlreadyExist(email) {
-  const user = await db.collection("users").findOne({email}); //Criar funções menores no repository para isso.
+  const user = await repository.findUser(email);
 
   //Criar um throw para os erros.
   if(user) return res.status(403).send("Email already in use");
