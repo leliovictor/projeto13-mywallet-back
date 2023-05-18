@@ -2,7 +2,7 @@ import db from "../config/db.js";
 import bcrypt from "bcrypt";
 import { loginSchema, signUnSchema } from "../schemas/authSchema.js";
 
-export async function findUser(req, res, next) {
+export async function findUser(req, res, next) { //blz
   const userValidation = loginSchema.validate(req.body);
 
   if (userValidation.error) {
@@ -23,7 +23,7 @@ export async function findUser(req, res, next) {
   next();
 }
 
-export async function checkPassword(req, res, next) {
+export async function checkPassword(req, res, next) { //blz
   const { password } = req.body;
 
   const confirmPassword = bcrypt.compareSync(
@@ -37,7 +37,7 @@ export async function checkPassword(req, res, next) {
   next();
 }
 
-export async function checkUserAlreadyExist(req, res, next) {
+export async function checkUserAlreadyExist(req, res, next) { //blz
   const userValidation = signUnSchema.validate(req.body);
 
   if (userValidation.error) {

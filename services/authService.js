@@ -39,3 +39,10 @@ export async function validatePassword(password, hashPassword) {
   if (!confirmPassword)
     return res.status(401).send("E-mail or Password incorrect!");
 }
+
+export async function validateUserByEmail(email) { //adicionar ao postLogin
+  const user = await repository.findUserByEmail(email);
+
+  if (!user) return res.status(401).send("E-mail or Password incorrect!");
+}
+  
