@@ -10,6 +10,7 @@ Coisas para atualizar/fazer:
 - Mudar o back para o Railway - Aprender como se faz. 
 - Adicionar regras de validação, schema está muito 'pobre'
 - Criar um THROW para os erros, estrutura atual não está boa.
+- Alterar o Token [JWT token talvez] para um token temporário ao invés de Login salvo no DB
 
 - Modificar o middleware, db call precisa ser do service [regra de negocio não entra em middleware].
 Adicionar a função que faz o throw error para fazer isso.
