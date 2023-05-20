@@ -47,3 +47,14 @@ export async function editStatement(user_id, walletStatement, index, value, desc
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 
+export async function checkIfStatementExist(_id) {
+    const userStatement = await db
+      .collection("statements")
+      .findOne({ user_id: ObjectId(_id) }); //remove from here
+  
+    if (!userStatement) {
+      return res.status(401).send("Wallet Statement doesn't exist");
+    }
+  
+    return userStatement;
+  }

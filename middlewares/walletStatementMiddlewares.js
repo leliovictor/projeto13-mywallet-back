@@ -19,7 +19,7 @@ export async function checkToken(req, res, next) {
   next();
 }
 
-export async function findStatement(req, res, next) {
+export async function findStatement(_req, res, next) {
   const userStatement = await db
     .collection("statements")
     .findOne({ user_id: ObjectId(res.locals._id) });
