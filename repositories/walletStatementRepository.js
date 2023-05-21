@@ -1,7 +1,7 @@
 import db from "../config/db";
 import { ObjectId } from "mongodb";
 
-export async function getUserWallet(userId) {
+export async function findUserWalletByUserId(userId) {
     return await db
     .collection("statements")
     .findOne({ user_id: ObjectId(userId) });

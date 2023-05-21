@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import * as repository from "../repositories/walletStatementRepository.js";
 
 export async function getStatement(userId) {
-    const { walletStatement } = await repository.getUserWallet(userId);
+    const { walletStatement } = await repository.findUserWalletByUserId(userId);
 
     return walletStatement;
 }
@@ -48,9 +48,7 @@ export async function editStatement(user_id, walletStatement, index, value, desc
 //----------------------------------------------------------------
 
 export async function checkIfStatementExist(_id) {
-    const userStatement = await db
-      .collection("statements")
-      .findOne({ user_id: ObjectId(_id) }); //remove from here
+    const userStatement = await repository.findUserWalletByUserId(_id);
   
     if (!userStatement) {
       return res.status(401).send("Wallet Statement doesn't exist");
