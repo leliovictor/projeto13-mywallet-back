@@ -2,7 +2,7 @@ import db from "../config/db.js";
 import { ObjectId } from "mongodb";
 import { validateInputSchema } from "../schemas/walletStatementSchema.js";
 
-export async function checkToken(req, res, next) {
+export async function checkToken(req, res, next) { //stay on middleware
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
 
@@ -19,7 +19,7 @@ export async function checkToken(req, res, next) {
   next();
 }
 
-export async function findStatement(_req, res, next) {
+export async function findStatement(_req, res, next) { //remove
   const userStatement = await db
     .collection("statements")
     .findOne({ user_id: ObjectId(res.locals._id) });
@@ -33,7 +33,7 @@ export async function findStatement(_req, res, next) {
   next();
 }
 
-export async function validateInputValue(req, res, next) {
+export async function validateInputValue(req, res, next) { //stay in the middleware
   const inputValidation = validateInputSchema.validate(req.body);
 
   if (inputValidation.error) {
