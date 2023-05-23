@@ -20,6 +20,7 @@ export async function deleteStatement(user_id, walletStatement) {
   await db
   .collection("statements")
   .updateOne({ user_id: user_id }, { $set: { walletStatement } }); 
+  //modificar isso para fazer mais sentido
 }
 
 export async function editStatement(user_id, walletStatement) {

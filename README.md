@@ -14,4 +14,5 @@ Coisas para atualizar/fazer:
 - Rever as regras de negócio do Statement, muito pobre ainda.
 
 - Modificar o middleware, db call precisa ser do service [regra de negocio não entra em middleware].
-Adicionar a função que faz o throw error para fazer isso.
+Adicionar a função que faz o throw error para fazer isso. [Erro handler]
+- Separar um token middleware antes de tudo e associar um logout no front com ele.
