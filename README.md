@@ -5,7 +5,7 @@ Coisas para atualizar/fazer:
 - Refatorar todo o código utilizando Controller, Service, Repository e etc.
 - Alterar o deleteStatement, parece estar igual ao editStatement
 - Banco de dados baseado em Mongo, rever como fazer as conexões no localhost para testar a refatoração
-- Converter o js para typescript
+- Converter o js para typescript: Dado que está usando mongo, as funções serem tipadas pode ajudar a evitar mais erros.
 - Atualizar o ReadMe explicando o projeto
 - Mudar o back para o Railway - Aprender como se faz. 
 - Adicionar regras de validação, schema está muito 'pobre'
