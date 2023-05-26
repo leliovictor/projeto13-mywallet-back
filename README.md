@@ -8,7 +8,7 @@ Coisas para atualizar/fazer:
 - Converter o js para typescript: Dado que está usando mongo, as funções serem tipadas pode ajudar a evitar mais erros.
 - Atualizar o ReadMe explicando o projeto
 - Mudar o back para o Railway - Aprender como se faz. 
-- Adicionar regras de validação, schema está muito 'pobre'
+- Adicionar regras de validação, schema está muito 'pobre' -> Juntar junto com o throw error.
 - Criar um THROW para os erros, estrutura atual não está boa.
 - Alterar o Token [JWT token talvez] para um token temporário ao invés de Login salvo no DB
 - Rever as regras de negócio do Statement, muito pobre ainda.
