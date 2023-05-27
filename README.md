@@ -16,3 +16,16 @@ Coisas para atualizar/fazer:
 - Modificar o middleware, db call precisa ser do service [regra de negocio não entra em middleware].
 Adicionar a função que faz o throw error para fazer isso. [Erro handler]
 - Separar um token middleware antes de tudo e associar um logout no front com ele.
+
+## Technologies
+<p>
+  <img src='https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white' alt="Node"/>
+  
+  <img src='https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white' alt="MongoDB" />
+  
+  <img src='https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white' alt="Express" />
+  
+  <img src='https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white' alt="Heroku" />
+
+</p>
+
