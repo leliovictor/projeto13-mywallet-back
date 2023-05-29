@@ -1,4 +1,4 @@
-import db from "../config/db.js";
+import db from "../config.js";
 
 export async function loginUser(token, _id) {
   await db

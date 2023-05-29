@@ -1,4 +1,4 @@
-import db from "../config/db.js";
+import db from "../config.js";
 import { ObjectId } from "mongodb";
 import { validateInputSchema } from "../schemas/walletStatementSchema.js";
 
