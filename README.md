@@ -17,6 +17,10 @@ Coisas para atualizar/fazer:
 Adicionar a função que faz o throw error para fazer isso. [Erro handler]
 - Separar um token middleware antes de tudo e associar um logout no front com ele.
 
+# MyWallet API
+
+API for MyWallet, an easy and simple way to manage your financial transactions. 
+
 ## Technologies
 
   [![Nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en/docs/)
