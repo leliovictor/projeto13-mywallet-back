@@ -19,7 +19,8 @@ Adicionar a função que faz o throw error para fazer isso. [Erro handler]
 
 # MyWallet API
 
-API for MyWallet, an easy and simple way to manage your financial transactions. 
+This API helps you to organize your financial transactions. 
+This project use MongoDB as database to save/remove/edit any financial transaction that you want to store.
 
 ## Technologies
 
