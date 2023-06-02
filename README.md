@@ -32,3 +32,8 @@ This project use MongoDB as database to save/remove/edit any financial transacti
   ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
 
+## How to run
+
+//Reinstalar tudo localmente primeiro e fazer essa parte de uma forma mais didática. 
+
+
