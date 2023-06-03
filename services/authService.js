@@ -3,15 +3,22 @@ import bcrypt from "bcrypt";
 
 import * as repository from "../repositories/authRepository.js";
 
-export async function postLogin(_id) {
+export async function postLogin(user,_id) {
+  const dbUser = await validateUserByEmail(user.email);
+  validatePassword(user.password, dbUser.password);
+
   const token = uuid();
 
-  await repository.loginUser(token, _id);
+  await repository.loginUser(token, dbUser["_id"]);
 
-  return token;
+  const response = {name: dbUser.name, token};
+
+  return response;
 }
 
 export async function postSignUp(newUser) {
+  await checkUserAlreadyExist(newUser.email);
+
   const cryptPassword = bcrypt.hashSync(newUser.password, 10);
 
   await repository.createUser(newUser, cryptPassword);
@@ -22,6 +29,10 @@ export async function postSignUp(newUser) {
 // FUNÇÔES AUXILIARES QUE AINDA NÂO ESTÃO EM USO!!!!
 //----------------------------------------------------------------
 //----------------------------------------------------------------
+
+export async function findUser(email) {
+
+}
 
 export async function checkUserAlreadyExist(email) {
   const user = await repository.findUserByEmail(email);
@@ -40,9 +51,11 @@ export async function validatePassword(password, hashPassword) {
     return res.status(401).send("E-mail or Password incorrect!");
 }
 
-export async function validateUserByEmail(email) { //adicionar ao postLogin
+export async function validateUserByEmail(email) {
   const user = await repository.findUserByEmail(email);
 
   if (!user) return res.status(401).send("E-mail or Password incorrect!");
+  
+  return user;
 }
   

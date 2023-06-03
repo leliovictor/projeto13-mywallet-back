@@ -2,7 +2,7 @@ import db from "../config.js";
 import bcrypt from "bcrypt";
 import { loginSchema, signUnSchema } from "../schemas/authSchema.js";
 
-export async function findUser(req, res, next) { //blz
+export async function findUser(req, res, next) {
   const userValidation = loginSchema.validate(req.body);
 
   if (userValidation.error) {
@@ -12,18 +12,19 @@ export async function findUser(req, res, next) { //blz
     });
   }
 
-  const { email } = req.body;
+  /*const { email } = req.body;
 
   const user = await db.collection("users").findOne({ email });
 
   if (!user) return res.status(401).send("E-mail or Password incorrect!");
 
   res.locals.user = user;
+  */
 
   next();
 }
 
-export async function checkPassword(req, res, next) { //blz
+export async function checkPassword(req, res, next) {
   const { password } = req.body;
 
   const confirmPassword = bcrypt.compareSync(
@@ -37,7 +38,7 @@ export async function checkPassword(req, res, next) { //blz
   next();
 }
 
-export async function checkUserAlreadyExist(req, res, next) { //blz
+export async function checkUserAlreadyExist(req, res, next) {
   const userValidation = signUnSchema.validate(req.body);
 
   if (userValidation.error) {

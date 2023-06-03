@@ -3,21 +3,18 @@ import * as service from "../services/authService.js";
 export async function postSignUp(req, res) {
   const newUser = req.body;
 
-  await service.postLogin(newUser);
+  await service.postSignUp(newUser);
 
   return res.sendStatus(201);
 }
 
-export async function postLogin(_req, res) {
+export async function postLogin(req, res) {
 
-  const { name, _id } = res.locals.user;
+  const user = req.body;
 
-  const token = service.postLogin(_id);
+  //const { name, _id } = res.locals.user;
 
-  const response = {
-    name,
-    token: token,
-  };
+  const response = await service.postLogin(user);
 
   return res.status(201).send(response);
 }
