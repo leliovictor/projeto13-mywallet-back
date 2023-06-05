@@ -30,9 +30,6 @@ export async function postSignUp(newUser) {
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 
-export async function findUser(email) {
-
-}
 
 export async function checkUserAlreadyExist(email) {
   const user = await repository.findUserByEmail(email);
