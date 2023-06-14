@@ -10,6 +10,7 @@ Coisas para atualizar/fazer:
 - Mudar o back para o Railway - Aprender como se faz. 
 - Adicionar regras de validação, schema está muito 'pobre' -> Juntar junto com o throw error.
 - Criar um THROW para os erros, estrutura atual não está boa.
+- Usar uma validação de schema genérica ao invés de chamar direto no middleware. 
 - Alterar o Token [JWT token talvez] para um token temporário ao invés de Login salvo no DB
 - Rever as regras de negócio do Statement, muito pobre ainda.
 
